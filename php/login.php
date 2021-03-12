@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (isset($_SESSION['id']) && isset($_SESSION['email'])){
+		header('Location: ../admin.php');
+	}
+
 require_once("dbconnect.php");
 $con= Createdb();
 

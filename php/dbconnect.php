@@ -27,6 +27,12 @@ function Createdb(){
                 password VARCHAR(255) NOT NULL);';
                 mysqli_query($con,$sql);
 
+                $sql='CREATE TABLE IF NOT EXISTS password_reset(
+                      id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                      email VARCHAR(255) NOT NULL,
+                      token VARCHAR(255) NOT NULL);';
+                      mysqli_query($con,$sql);
+
                 $sql="CREATE TABLE IF NOT EXISTS movies(
                       id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                       movie_name VARCHAR (25) NOT NULL,

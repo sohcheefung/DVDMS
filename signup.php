@@ -71,11 +71,12 @@ $con= Createdb();
           <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" placeholder="Confirm your password">
         </div>
 
-        <div class="mb-3">
-          <p>Already register? <a href="index.php" class="link-primary text-start">Login here</a></p>
-        </div>
-        <div class="d-grid gap-2">
+        <div class="mb-3 d-grid gap-2">
         <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP</button>
+      </div>
+
+      <div class="mb-3">
+        <p>Already register? <a href="index.php" class="link-primary text-start">Login here</a></p>
       </div>
       </form>
     </div>

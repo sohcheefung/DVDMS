@@ -1,20 +1,13 @@
 <?php
-session_start();
-if (isset($_SESSION['id']) && isset($_SESSION['email'])){
-		header('Location: admin.php');
-    exit();
-	}
-
 require_once("php/dbconnect.php");
 $con= Createdb();
-
 ?>
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport">
-  <title>DVDMS - Login/SignUp</title>
+  <title>DVDMS - Forgot Password</title>
   <script src="https://kit.fontawesome.com/1f324ff0f6.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <style type = text/css>
@@ -25,6 +18,13 @@ $con= Createdb();
     width: 100%;
     border-radius: 5px;
     margin: 20px auto;}
+    .successMessage{
+      background: #D4EDDA;
+      color: #40754C;
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      margin: 20px auto;}
     </style>
   </head>
 
@@ -33,28 +33,24 @@ $con= Createdb();
       <h1 class="py-4 bg-dark text-light rounded"><i class="fas fa-film"></i> DVD Management System</h1>
     </div>
     <div class="container d-flex justify-content-center align-items-center">
-      <form class="border shadow p-3 rounded bg-body" style="width: 450px;" action="php/login.php" method="post">
-        <h1 class="text-center p-3">LOGIN</h1>
+      <form class="border shadow p-3 rounded bg-body" style="width: 450px;" action="php/reset_password.php" method="post">
+        <h1 class="text-center p-3">FORGOT PASSWORD</h1>
         <?php if(isset($_GET['error'])) { ?>
           <p class="errorMessage"><?php echo $_GET['error']; ?></p>
         <?php } ?>
+        <?php if(isset($_GET['success'])) { ?>
+          <p class="successMessage"><?php echo $_GET['success']; ?></p>
+        <?php } ?>
         <div class="mb-3">
-          <label for="email" class="form-label fw-normal">EMAIL</label>
+          <label for="email" class="form-label fw-normal">ENTER YOUR EMAIL</label>
           <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email address">
         </div>
         <div class="mb-3">
-          <label for="password" class="form-label">PASSWORD</label>
-          <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password">
-        </div>
-        <div class="mb-3">
-          <a href="forgotpassword.php" class="link-primary text-start">Forgot Password?</a>
+          <a href="index.php" class="link-primary text-start">BACK</a>
         </div>
         <div class="mb-3 d-grid gap-2">
-        <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-sign-in-alt"></i> LOGIN</button>
+        <button type="submit" name="submit" class="btn btn-primary btn-lg"><i class="fas fa-sign-in-alt"></i> SUBMIT</button>
         </div>
-      <div class="mb-3">
-        <p>Don't have an account? <a href="signup.php" class="link-primary text-start">Create an account here</a></p>
-      </div>
       </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

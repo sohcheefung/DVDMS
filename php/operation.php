@@ -35,7 +35,7 @@ function createData(){
     if(mysqli_query($GLOBALS['con'],$sql)){
       TextNode("success","Record Successfully Inserted...");
     }else{
-      echo "error","Unable to insert data!";
+      TextNode("error","Unable to insert data!");
     }
 
   }else{
@@ -97,6 +97,7 @@ function deleteRecord(){
 
   if(mysqli_query($GLOBALS['con'],$sql)){
     TextNode("success","Record Deleted Successfully");
+    resetID();
   }else{
     TextNode("error","Unable to Delete Record!");
   }
@@ -137,4 +138,18 @@ function setID(){
     }
   }
   return($id+1);
+}
+
+//reset movie id
+function resetID(){
+    $movieid= textboxValue("movie_id");
+
+    $sql = "SET @count = 0";
+    mysqli_query($GLOBALS['con'], $sql);
+
+    $sql2 = "UPDATE movies SET id = @count:= @count + 1";
+    mysqli_query($GLOBALS['con'], $sql2);
+
+    $sql3= "ALTER TABLE movies AUTO_INCREMENT = 1";
+    mysqli_query($GLOBALS['con'], $sql3);
 }

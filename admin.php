@@ -3,13 +3,18 @@ require_once("php/operation.php");
 require_once("php/component.php");
 session_start();
 if (isset($_SESSION['id']) && isset($_SESSION['email'])){
+    $urlExt = "";
+    $array = explode('/',$_SERVER['REQUEST_URI']);
+    if( $array[count($array)-2]!="DVDMS"){
+      $urlExt = "../";
+    }
  ?>
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport">
-<title>DVD Store - Home</title>
+<title>DVDMS - Home</title>
 <script src="https://kit.fontawesome.com/1f324ff0f6.js" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <!--Custom stylesheet-->
@@ -19,7 +24,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])){
 <body>
 <main>
   <div class="container text-center">
-    <h1 class="py-4 bg-dark text-light rounded"><i class="fas fa-film"></i> DVD Store</h1>
+    <h1 class="py-4 bg-dark text-light rounded"><i class="fas fa-film"></i> DVD Management System</h1>
     <div class="text-start">
     <p class="fw-bold">Hello,<?php echo $_SESSION['name']; ?></p>
     <div class="row pt-0">
@@ -88,7 +93,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])){
                 <?php
               }
             }
-
            ?>
         </tbody>
       </table>
@@ -103,7 +107,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])){
 </html>
 
 <?php
-}else {
+}else{
       header("Location: index.php");
       exit();
 }
